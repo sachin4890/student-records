@@ -1,1 +1,24 @@
-<p>book-detail works!</p>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <div class="col-md-6">
+
+            <form [formGroup]="editBookForm" (ngSubmit)="editBook()">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Name</label>
+                    <input type="text" class="form-control" formControlName="name">
+
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Price</label>
+                    <input type="text" class="form-control" formControlName="price">
+                </div>
+
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Description</label>
+                    <textarea type="text" class="form-control" formControlName="description"></textarea>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Update">
+            </form>
+        </div>
+    </div>
+</div>

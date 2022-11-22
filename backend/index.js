@@ -6,8 +6,7 @@ bodyParser= require('body-parser'),
 mongoDb= require('./database/db')
 mongoose.Promise = global.Promise;
 mongoose.connect(mongoDb.db,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
+    useNewUrlParser:true
 }).then(()=>{
     console.log('Database connected successfully')
 },
@@ -24,7 +23,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:false
 }));
-app.use(cors);
+app.use(cors({
+    origin:"http://localhost:4200",
+}));
+
 app.use(express.static(path.join(__dirname,'dist/Bookstore')));
 // App route
 app.use('/api',bookRoute);
@@ -38,9 +40,9 @@ app.listen(port,()=> {
 
 // 404 error handler
 
-app.use((req,res,next)=>{
-    next(createError(404))
-})
+// app.use((req,res,next)=>{
+//     next(createError(404))
+// })
 
 // base route
 app.get('/',(req,res)=>{
@@ -51,8 +53,8 @@ app.get('*',(req,res)=>{
     res.sendFile(path.join(__dirname,'dist/Bookstore/index.html'))
 })
 
-app.use(function(err,req,res,next){
-    console.log(err.message)
-    if(!err.statusCode) err.statusCode=500;
-    res.status(err,statusCode).send(err.message);
-})
+// app.use(function(err,req,res,next){
+//     console.log(err.message)
+//     if(!err.statusCode) err.statusCode=500;
+//     res.status(err,statusCode).send(err.message);
+// })

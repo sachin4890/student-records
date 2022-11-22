@@ -1,7 +1,7 @@
 import { HttpClient,HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {catchError, map, Observable, throwError} from 'rxjs';
-import {Book} from './book'
+import {Book} from './book';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,11 @@ export class CrudService {
 
   // add records
 
-  AddBook(data:Book):Observable<any>{
+  addBook(data:Book):Observable<any>{
     let API_URL= `${this.REST_API}/add-book`;
-    return this.httpClient.post(API_URL,data).pipe(catchError(this.handleError))
+    const body=JSON.stringify(data);
+    console.log(data,'dataaaa');
+    return this.httpClient.post(API_URL,body,{headers:this.httpHeaders})
   }
 
   // get all record
@@ -40,7 +42,7 @@ getBook(id:any):Observable<any>{
 //  update Book
 updateBook(id:any,data:any):Observable<any>{
   let API_URL = `${this.REST_API}/update-book/${id}`;
-  return this.httpClient.put(API_URL,{headers:this.httpHeaders}).pipe(
+  return this.httpClient.put(API_URL,data,{headers:this.httpHeaders}).pipe(
     catchError(this.handleError)
   )
 }
