@@ -5,6 +5,7 @@ let Book = require('../model/Book');
 
 //  Add book for store 
 bookRoute.route('/add-book').post((req,res,next)=>{
+    console.log('working add book');
     Book.create(req.body,(error,data)=> {
         if(error){
             return next(error)

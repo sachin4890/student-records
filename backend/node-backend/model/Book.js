@@ -12,7 +12,7 @@ let Book = new Schema({
     }
     },
     {
-        collation:'books'
+        collection:'books'
     
 })
-module.exports=mongoose.model('Books',Book)
+module.exports=mongoose.model('Book',Book)
