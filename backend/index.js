@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
     extended:false
 }));
 app.use(cors({
-    origin:"*",
+     origin:"*",
 }));
 
 app.use(express.static(path.join(__dirname,'dist/Bookstore')));
